@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+bases:
+- ./kustomize/bases/rbac
+- ./kustomize/bases/controller
+- ./kustomize/bases/webhooks
+
+images:
+  - name: geryon
+    newName: gcr.io/urcomputeringpal-public/geryon
+    newTag: v0.0.1

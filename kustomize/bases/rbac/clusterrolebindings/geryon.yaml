@@ -1,0 +1,11 @@
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: geryon
+subjects:
+- kind: ServiceAccount
+  name: geryon
+roleRef:
+  name: geryon
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole

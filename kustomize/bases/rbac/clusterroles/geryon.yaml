@@ -1,0 +1,27 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: geryon
+rules:
+
+# Geryon watches your namespaces and annotates them
+- apiGroups: [""]
+  resources: ["namespaces"]
+  verbs: ["get","list","watch","create","update"]
+
+# Geryon can read and updates github-package-registry secrets
+- apiGroups: [""]
+  resources: ["secrets"]
+  resourceNames: ["github-package-registry"]
+  verbs: ["get","update"]
+
+# And can also create it
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["create"]
+
+# Geryon updates the default serviceaccount to include ^^
+- apiGroups: [""]
+  resourceNames: ["default"]
+  resources: ["serviceaccounts"]
+  verbs: ["get","update"]

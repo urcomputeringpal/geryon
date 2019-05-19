@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: geryon
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: geryon
+  template:
+    metadata:
+      labels:
+        app: geryon
+    spec:
+      serviceAccountName: geryon
+      securityContext:
+        runAsUser: 1000
+      containers:
+        - name: geryon
+          image: geryon
+          command:
+          - /geryon
+          envFrom:
+          - configMapRef:
+              name: geryon
+          volumeMounts:
+          - mountPath: /config
+            name: config
+          env:
+          - name: PORT
+            value: "$(PORT)"
+          - name: PRIVATE_KEY_FILE
+            value: /config/private-key.pem
+          - name: WEBHOOK_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: geryon
+                key: webhook-secret
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+      volumes:
+      - name: config
+        secret:
+          secretName: geryon
+          items:
+          - key: private-key.pem
+            path: private-key.pem
