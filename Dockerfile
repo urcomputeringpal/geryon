@@ -4,7 +4,7 @@ ENV GO111MODULE=on
 COPY go.* ./
 RUN go mod download
 COPY ./ ./
-RUN ls -alth && go install -v ./... && ls -alth /go/bin/ && ls -alth
+RUN go install ./...
 
 # Now copy it into our base image.
 FROM gcr.io/distroless/base
