@@ -1,5 +1,11 @@
 # Build an image using kaniko to get decent caching
 steps:
+- name: 'gcr.io/kaniko-project/executor:latest'
+  args:
+  - --destination=gcr.io/$PROJECT_ID/$REPO_NAME:$SHORT_SHA
+  - --reproducible
+  - --cache=true
+  - --cache-ttl=1h
 # Tag as the tag & branch if present
 - name: gcr.io/cloud-builders/docker
   entrypoint: bash
