@@ -1,3 +1,6 @@
 *.pem
 .env
 .git
+*.yaml
+*.md
+kustomize

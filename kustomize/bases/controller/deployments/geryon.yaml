@@ -31,11 +31,6 @@ spec:
             value: "$(PORT)"
           - name: PRIVATE_KEY_FILE
             value: /config/private-key.pem
-          - name: WEBHOOK_SECRET
-            valueFrom:
-              secretKeyRef:
-                name: geryon
-                key: webhook-secret
           readinessProbe:
             httpGet:
               path: /healthz

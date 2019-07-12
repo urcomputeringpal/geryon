@@ -35,7 +35,7 @@ type GenericEvent struct {
 func (s *Server) Run(stopCh <-chan struct{}, shutdownCh chan struct{}) error {
 	s.tr = &http.DefaultTransport
 
-	http.HandleFunc("/webhook", s.handle)
+	http.HandleFunc("/webhooks", s.handle)
 	http.HandleFunc("/healthz", s.health)
 	http.HandleFunc("/", s.redirect)
 	h := &http.Server{
