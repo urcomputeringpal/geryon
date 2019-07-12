@@ -15,11 +15,10 @@ resources:
 
 configMapGenerator:
 - name: geryon
-  literals:
-    - APP_ID=
+  envs:
+    - .env
 
 secretGenerator:
 - name: geryon
   files:
     - private-key.pem
-    - webhook-secret

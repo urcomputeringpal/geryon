@@ -4,15 +4,15 @@ resources:
 - ./deployments/geryon.yaml
 
 configMapGenerator:
-- name: geryon
-  literals:
+- literals:
   - PORT=8080
+  name: geryon
 
 vars:
-- name: PORT
+- fieldref:
+    fieldPath: data.PORT
+  name: PORT
   objref:
     apiVersion: v1
     kind: ConfigMap
     name: geryon
-  fieldref:
-    fieldpath: data.PORT

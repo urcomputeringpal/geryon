@@ -1,10 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: geryon
+  name: http
 spec:
+  type: NodePort
   ports:
-  - name: webhooks
+  - name: http
     port: 8080
   selector:
     app: geryon
