@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: http
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
   - name: http
     port: 8080

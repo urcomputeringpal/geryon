@@ -37,7 +37,7 @@ APP_ID=30576
   * See [this GKE example](https://cloud.google.com/kubernetes-engine/docs/tutorials/http-balancer) for reference
 * Create a `geryon` namespace on your Kubernetes cluster: `kubectl create ns geryon`
 * Apply `geryon` to your cluster: `kubectl apply -k .`
-* Update your GitHub app's Webhook URL to the URL of your Ingress resource
+* Update your GitHub app's Webhook URL to the URL of your Ingress resource followed by `/webhooks`
 
 ## Development
 
@@ -57,3 +57,5 @@ APP_ID=30576
 ```
 skaffold-dev
 ```
+1. Obtain the service IP with `kubectl get svc -o wide`
+1. Update the Webhook URL to be `http://$(IP):8080/webhooks
