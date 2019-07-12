@@ -21,12 +21,12 @@ import (
 // GitHub account. At its core, it's a GitHub Client, a Kubernetes client, a
 // work queue, and a bunch of workers.
 type Geryon struct {
-	GithubAppsClient        *github.Client
-	KubernetesClient        *kubernetes.Clientset
-	NamespaceInformerCache  cache.Store
-	gitHubApp               *webhooks.Server
-	queue                   workqueue.RateLimitingInterface
-	Config                  Config
+	GithubAppsClient       *github.Client
+	KubernetesClient       *kubernetes.Clientset
+	NamespaceInformerCache cache.Store
+	gitHubApp              *webhooks.Server
+	queue                  workqueue.RateLimitingInterface
+	Config                 Config
 }
 
 const (
