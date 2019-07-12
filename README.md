@@ -58,4 +58,5 @@ APP_ID=30576
 skaffold-dev
 ```
 1. Obtain the service IP with `kubectl get svc -o wide`
-1. Update the Webhook URL to be `http://$(IP):8080/webhooks
+1. Update the Webhook URL to be `http://$(IP):8080/webhooks`
+1. Dev in a loop and watch the updates happen automatically
