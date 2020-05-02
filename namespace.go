@@ -36,7 +36,7 @@ func (g *Geryon) SyncNamespace(nameAndInstallationID string) error {
 				},
 			},
 		}
-		ns, err = namespaceClient.Create(newNamespace)
+		ns, err = namespaceClient.Create(context.Background(), newNamespace, metav1.CreateOptions{})
 		if err != nil {
 			return err
 		}
@@ -46,7 +46,7 @@ func (g *Geryon) SyncNamespace(nameAndInstallationID string) error {
 
 	secretClient := g.KubernetesClient.CoreV1().Secrets(namespace.GetName())
 
-	secret, err := secretClient.Get(DockerSecretName, metav1.GetOptions{})
+	secret, err := secretClient.Get(context.Background(), DockerSecretName, metav1.GetOptions{})
 	create := false
 	update := false
 	if err != nil {
@@ -89,14 +89,14 @@ func (g *Geryon) SyncNamespace(nameAndInstallationID string) error {
 	}
 
 	if create {
-		_, err := secretClient.Create(secret)
+		_, err := secretClient.Create(context.Background(), secret, metav1.CreateOptions{})
 		if err != nil {
 			return err
 		}
 		log.Printf("Created %s secret in %s namespace\n", DockerSecretName, namespace.GetName())
 	}
 	if update {
-		_, err := secretClient.Update(secret)
+		_, err := secretClient.Update(context.Background(), secret, metav1.UpdateOptions{})
 		if err != nil {
 			return err
 		}
@@ -105,7 +105,7 @@ func (g *Geryon) SyncNamespace(nameAndInstallationID string) error {
 
 	serviceAccountClient := g.KubernetesClient.CoreV1().ServiceAccounts(namespace.GetName())
 
-	serviceAccount, err := serviceAccountClient.Get("default", metav1.GetOptions{})
+	serviceAccount, err := serviceAccountClient.Get(context.Background(), "default", metav1.GetOptions{})
 	if err != nil {
 		return err
 	}
@@ -127,7 +127,7 @@ func (g *Geryon) SyncNamespace(nameAndInstallationID string) error {
 	}
 
 	if !referenceExists {
-		_, err = serviceAccountClient.Update(serviceAccount)
+		_, err = serviceAccountClient.Update(context.Background(), serviceAccount, metav1.UpdateOptions{})
 		if err != nil {
 			return err
 		}
