@@ -17,7 +17,7 @@ RUN go test ./... && go build \
   -installsuffix cgo \
   -tags netgo \
   -o /bin/app \
-  . \
+  ./... \
   && strip /bin/app \
   && upx -q -9 /bin/app
 
