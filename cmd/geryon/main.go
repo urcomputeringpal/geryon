@@ -36,14 +36,14 @@ func main() {
 	}
 
 	geryon, err := geryon.NewGeryon(geryon.Config{
-		WebhookPort:                portInt,
-		GitHubAppID:                appIDInt,
-		GitHubAppPrivateKeyFile:    privateKeyFile,
-		GithubAppWebHookSecret:     webhookSecret,
-		Kubeconfig:                 os.Getenv("KUBECONFIG"),
+		WebhookPort:             portInt,
+		GitHubAppID:             appIDInt,
+		GitHubAppPrivateKeyFile: privateKeyFile,
+		GithubAppWebHookSecret:  webhookSecret,
+		Kubeconfig:              os.Getenv("KUBECONFIG"),
 		// TODO configurable
-		InstallationResyncInterval: 5*time.Minute,
-		NamespaceResyncInterval:    29*time.Minute,
+		InstallationResyncInterval: 5 * time.Minute,
+		NamespaceResyncInterval:    29 * time.Minute,
 		Threadiness:                4,
 	})
 	if err != nil {

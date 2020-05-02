@@ -138,7 +138,7 @@ func (g *Geryon) SyncNamespace(nameAndInstallationID string) error {
 }
 
 // ResyncInstallationNamespaces loads a list of Installations and Repositories
-// from GitHub and queues up a call to SyncNamespace for each. Run calls this 
+// from GitHub and queues up a call to SyncNamespace for each. Run calls this
 // every Config.InstallationResyncInterval
 func (g *Geryon) ResyncInstallationNamespaces() {
 	log.Println("Resyncing installations...")
@@ -164,7 +164,7 @@ func (g *Geryon) ResyncInstallationNamespaces() {
 }
 
 // ResyncManagedNamespaces loads a list of all namespaces that were created by
-// Geryon and queues up a call to SyncNamespace for each every 
+// Geryon and queues up a call to SyncNamespace for each every
 // Config.NamespaceResyncInterval
 func (g *Geryon) ResyncManagedNamespaces() {
 	log.Println("Resyncing namespaces...")
