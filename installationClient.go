@@ -1,6 +1,7 @@
 package geryon
 
 import (
+	"context"
 	"net/http"
 
 	"github.com/bradleyfalzon/ghinstallation"
@@ -8,7 +9,7 @@ import (
 )
 
 func (g *Geryon) getInstallationClient(installationID int64) (*github.Client, error) {
-	installationTransport, err := ghinstallation.NewKeyFromFile(http.DefaultTransport, g.Config.GitHubAppID, int(installationID), g.Config.GitHubAppPrivateKeyFile)
+	installationTransport, err := ghinstallation.NewKeyFromFile(http.DefaultTransport, g.Config.GitHubAppID, installationID, g.Config.GitHubAppPrivateKeyFile)
 	if err != nil {
 		return nil, err
 	}
@@ -17,10 +18,10 @@ func (g *Geryon) getInstallationClient(installationID int64) (*github.Client, er
 }
 
 func (g *Geryon) getInstallationToken(installationID int64) (string, error) {
-	installationTransport, err := ghinstallation.NewKeyFromFile(http.DefaultTransport, g.Config.GitHubAppID, int(installationID), g.Config.GitHubAppPrivateKeyFile)
+	installationTransport, err := ghinstallation.NewKeyFromFile(http.DefaultTransport, g.Config.GitHubAppID, installationID, g.Config.GitHubAppPrivateKeyFile)
 	if err != nil {
 		return "", err
 	}
 
-	return installationTransport.Token()
+	return installationTransport.Token(context.Background())
 }

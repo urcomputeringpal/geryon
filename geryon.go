@@ -46,7 +46,7 @@ const (
 // Config contains the configuration for a Geryon controller
 type Config struct {
 	WebhookPort                int
-	GitHubAppID                int
+	GitHubAppID                int64
 	GitHubAppPrivateKeyFile    string
 	GithubAppWebHookSecret     string
 	Kubeconfig                 string

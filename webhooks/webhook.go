@@ -13,7 +13,7 @@ import (
 type Webhook struct {
 	Event     interface{}
 	Github    *github.Client
-	AppID     *int
+	AppID     *int64
 	AppGitHub *github.Client
 	Queue     workqueue.RateLimitingInterface
 }

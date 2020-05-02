@@ -19,7 +19,7 @@ type Server struct {
 	Port            int
 	WebhookSecret   string
 	PrivateKeyFile  string
-	AppID           int
+	AppID           int64
 	GitHubAppClient *github.Client
 	tr              *http.RoundTripper
 	Queue           workqueue.RateLimitingInterface
@@ -86,7 +86,7 @@ func (s *Server) handle(w http.ResponseWriter, r *http.Request) {
 
 	var installationTransport *ghinstallation.Transport
 	if ge.Installation != nil {
-		installationTransport, err = ghinstallation.NewKeyFromFile(*s.tr, s.AppID, int(ge.Installation.GetID()), s.PrivateKeyFile)
+		installationTransport, err = ghinstallation.NewKeyFromFile(*s.tr, s.AppID, ge.Installation.GetID(), s.PrivateKeyFile)
 		if err != nil {
 			log.Println(err)
 			return

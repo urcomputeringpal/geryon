@@ -2,5 +2,5 @@
 //
 // It automatically creates namespaces for each GitHub Repository the app is
 // installed on, and automatically syncs ImagePullSecrets for GitHub's Package
-// Registry 
+// Registry
 package geryon
