@@ -28,7 +28,7 @@ func main() {
 	if !ok {
 		log.Fatal("APP_ID required")
 	}
-	appIDInt, _ := strconv.Atoi(appID)
+	appIDInt, _ := strconv.ParseInt(appID, 10, 64)
 
 	privateKeyFile, ok := os.LookupEnv("PRIVATE_KEY_FILE")
 	if !ok {
