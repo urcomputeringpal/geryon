@@ -4,7 +4,7 @@ _[/‘dʒɪəriən/ <br> ge-re-on](https://youtu.be/lhbB4FDKg8Y)_ <br>
 _noun_
 
 1. A mythological Greek monster. Like the :octocat:, it's not entirely clear how many legs Geryon had.
-2. A GitHub App for Kubernetes clusters. Run it on your cluster to let others in your organization connect their repo to that cluster by installing the app.
+2. A GitHub App for connecting orgs and repos to Kubernetes clusters. Run it on your cluster to let others in your organization connect their new or existing repos to that cluster by installing the app.
 
 ## Features
 
@@ -12,9 +12,11 @@ _noun_
 
 Geryon will create a Kubernetes namespace named after each GitHub Repository it is installed on.
 
-### ImagePullCredentials for GitHub Package Registry
+## Roadmap
 
-Namespaces created by Geryon include a Secret containing regularly-refreshed imagePullSecrets credentials to allow them to access Docker images pushed to the GitHub Package Registry. Namespaces' `default` ServiceAccount are also patched to refer these imagePullSecrets.
+- Setup imagePullCredentials? https://github.com/urcomputeringpal/geryon/issues/1
+- Setup a self-hosted runner? https://github.com/urcomputeringpal/actions-runner-kubernetes
+- Configure actions?
 
 ## Installation
 
