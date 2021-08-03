@@ -28,7 +28,7 @@ func main() {
 	if !ok {
 		log.Fatal("APP_ID required")
 	}
-	appIDInt, _ := strconv.Atoi(appID)
+	appIDInt, _ := strconv.ParseInt(appID, 10, 64)
 
 	privateKeyFile, ok := os.LookupEnv("PRIVATE_KEY_FILE")
 	if !ok {
@@ -36,14 +36,14 @@ func main() {
 	}
 
 	geryon, err := geryon.NewGeryon(geryon.Config{
-		WebhookPort:                portInt,
-		GitHubAppID:                appIDInt,
-		GitHubAppPrivateKeyFile:    privateKeyFile,
-		GithubAppWebHookSecret:     webhookSecret,
-		Kubeconfig:                 os.Getenv("KUBECONFIG"),
+		WebhookPort:             portInt,
+		GitHubAppID:             appIDInt,
+		GitHubAppPrivateKeyFile: privateKeyFile,
+		GithubAppWebHookSecret:  webhookSecret,
+		Kubeconfig:              os.Getenv("KUBECONFIG"),
 		// TODO configurable
-		InstallationResyncInterval: 5*time.Minute,
-		NamespaceResyncInterval:    29*time.Minute,
+		InstallationResyncInterval: 5 * time.Minute,
+		NamespaceResyncInterval:    29 * time.Minute,
 		Threadiness:                4,
 	})
 	if err != nil {
